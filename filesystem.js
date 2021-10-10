@@ -16,9 +16,10 @@ var createFile = () => {
     }
     repeat();
   });
+
 };
 var readFile = () => {
-  fs.readFile(filename, "utf-8", (err, data) => {
+  fs.readFile(filename, 'utf-8', (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -27,7 +28,7 @@ var readFile = () => {
     repeat();
   });
 };
-//File Creation
+//Create File
 var createFileWizard = () => {
   console.log("/n Welcome To The FileCreation Phase : ");
   rl.question("Name Of The File :", (ans) => {
@@ -46,6 +47,7 @@ var readFileWizard = () => {
       readFile();
     } else {
       console.log("Enter Valid File Name :");
+
     }
   });
 };
@@ -56,7 +58,7 @@ var appendToFileWizard = () => {
       if (err) {
         console.log(err);
       } else {
-        console.log("File Data Appended");
+        console.log('File Data Appended');
       }
       readFileWizard();
       repeat();
@@ -66,6 +68,7 @@ var appendToFileWizard = () => {
 //Rename File
 var renameFileWizard = () => {
   rl.question("Enter File name You Want TO rename :", (ans) => {
+
     rl.question("Enter New File Name :", (ans) => {
       renamed_name = ans + ".txt";
       fs.rename(filename, renamed_name, (err) => {
@@ -87,20 +90,51 @@ var deleteFileWizard = () => {
       if (err) {
         console.log(err);
       } else {
-        console.log("File Deleted.");
+        console.log('File Deleted.');
       }
       repeat();
     });
   });
 };
+//Create Directory
+var createDirectory = () => {
+  rl.question("Enter Your Directory Name :", (ans) => {
 
+    fs.mkdir(ans, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Folder Created');
+      }
+      repeat();
+    });
+  });
+
+};
+//Remove Directory
+var removeDirectory = () => {
+  rl.question("Enter Your Directory Name You Want TO Remove :", (ans) => {
+
+    fs.rmdir(ans, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Folder Deleted.');
+      }
+      repeat();
+    });
+  });
+
+};
 var instruction = () => {
   console.log("\n Enter 1 To Create a New File :");
   console.log("\n Enter 2 To read The Content of a file :");
   console.log("\n Enter 3 To append to an existing file :");
   console.log("\n Enter 4 to rename a file :");
   console.log("\n Enter 5 to delete a file :");
-  console.log("\n Enter 6 to Exit :");
+  console.log("\n Enter 6 to Create Directory :")
+  console.log("\n Enter 7 to Remove Directory :")
+  console.log("Enter 8 to Exit :");
 };
 
 var start = () => {
@@ -116,6 +150,10 @@ var start = () => {
     } else if (answer === "5") {
       deleteFileWizard();
     } else if (answer === "6") {
+      createDirectory();
+    } else if (answer === "7") {
+      removeDirectory();
+    } else if (answer === "8") {
       rl.close();
     }
   });
@@ -124,5 +162,5 @@ var repeat = () => {
   instruction();
   start();
 };
-console.log("Welcome File System :");
+console.log("Welcome To File System Module :");
 repeat();
