@@ -8,7 +8,7 @@ console.log("Free memory: " + os.freemem());
 console.log("Total memory: " + os.totalmem());
 //It returns OS Platform Details
 console.log("OS Platform : " + os.platform());
-
+// Current User Info
 console.log("Information About Current User : ");
 // Printing os.userInfo() values
 try {
